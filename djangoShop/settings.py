@@ -102,7 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # LANGUAGE_CODE - язык проекта
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
 # TIME_ZONE - часовой пояс проекта
 TIME_ZONE = 'Asia/Bishkek' # Asia/Bishkek +6

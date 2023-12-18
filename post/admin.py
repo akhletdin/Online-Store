@@ -1,5 +1,14 @@
 '''
 admin.py - Файл настроек административного сайта.
+
+admin - модуль для работы с административным сайтом.
+site - объект, который представляет собой административный сайт.
+register - метод, который регистрирует модель в административном сайте. (простая регистрация)
 '''
 
-from django.contrib import admin
+from django.contrib import admin  # модуль для работы с административным сайтом.
+
+from post.models import Product
+
+
+admin.site.register(Product)
