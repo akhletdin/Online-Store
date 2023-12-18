@@ -3,7 +3,7 @@ venv
 db.sqlite3
 .idea
 */migrations/0*.py
-__pycache__/
+*/__pycache__/
 .env/
 pip-cache/
 *.secret
