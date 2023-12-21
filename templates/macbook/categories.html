@@ -1,0 +1,13 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+{% for macbook in macbooks %}
+    <a href="">
+        <p>
+            #{{ macbook.name }}
+        </p>
+    </a>
+    <br>
+{% endfor %}
+{% endblock %}
