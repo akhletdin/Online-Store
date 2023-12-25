@@ -20,7 +20,7 @@
     {% for product in products %}
 
         <div class="card" style="width: 18rem;">
-            <img src="{{ product.image }}" class="card-img-top" alt="...">
+            <img src="/media/{{ product.image }}" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">{{ product.title }} {{ product.grade }}</h5>
                 <p class="card-text">{{ product.text }}</p>
@@ -33,7 +33,7 @@
                 </a>
             {% endfor %}
 
-                <a href="#" class="btn btn-primary">View detail</a>
+                <a href="{{ product.id }}/" class="btn btn-primary">View detail</a>
             </div>
         </div>
 

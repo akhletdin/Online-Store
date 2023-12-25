@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<h1>Product Detail</h1>
+
+<h2>{{ product.title }} {{ product.grade }}</h2>
+
+<p>{{ product.text }}</p>
+
+<img src="/media/{{ product.image }}">
+
+<p>{{ product.created_at }}</p>
+
+{% for category in product.categories.all %}
+    <a class="btn btn-primary" href="#">
+        <p>
+            #{{ category.name }}
+        </p>
+    </a>
+{% endfor %}
+
+
+{% endblock %}
+

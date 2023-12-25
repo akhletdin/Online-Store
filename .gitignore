@@ -8,4 +8,6 @@ db.sqlite3
 .env/
 pip-cache/
 *.secret
-
+staticfiles
+media
+static

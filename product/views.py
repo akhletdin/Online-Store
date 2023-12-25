@@ -70,7 +70,25 @@ def category_list_view(request):
 
         # 3 - вернуть ответ с шаблоном и данными
         return render(
-            request, # запрос от пользователя (объект HttpRequest) параметр обязательный
+            request,  # запрос от пользователя (объект HttpRequest) параметр обязательный
             'category/categories.html.',  # имя шаблона (строка) параметр обязательный
-            context=context # словарь с данными (dict) параметр необязательный
+            context=context  # словарь с данными (dict) параметр необязательный
+        )
+
+
+def product_detail_view(request, product_id):
+    if request.method == 'GET':
+        try:
+            product = Product.objects.get(id=product_id)
+        except Product.DoesNotExist:
+            return render(request, '404.html')
+
+        context = {
+            'product': product,
+        }
+
+        return render(
+            request,  # запрос от пользователя (объект HttpRequest) параметр обязательный
+            'product/detail.html',  # имя шаблона (строка) параметр обязательный
+            context=context  # словарь с данными (dict) параметр необязательный
         )
