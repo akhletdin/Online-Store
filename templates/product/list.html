@@ -25,10 +25,10 @@
                 <h5 class="card-title">{{ product.title }} {{ product.grade }}</h5>
                 <p class="card-text">{{ product.text }}</p>
                 <p class="card-text">{{ product.created_at}}</p>
-                {% for macbook in product.macbooks.all %}
+                {% for category in product.categories.all %}
                 <a class="btn btn-primary" href="#">
                     <p>
-                        #{{ macbook.name }}
+                        #{{ category.name }}
                     </p>
                 </a>
             {% endfor %}

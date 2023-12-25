@@ -48,18 +48,6 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class Macbook(BaseModel):
-    name = models.CharField(max_length=255, verbose_name="Название")  # Поле для ввода текста без ограничения
-
-    def __str__(self) -> str:
-        return f"{self.name}"
-
-    class Meta:  # Мета класс - Это класс, который содержит дополнительную информацию о модели
-        db_table = 'macbook'  # Название таблицы в базе данных (по умолчанию appname_classname (post_post))
-        verbose_name = 'Макбук'  # Название модели в единственном числе
-        verbose_name_plural = 'Макбуки'  # Название модели во множественном числе
-
-
 class Product(BaseModel):
     image = models.ImageField(
         upload_to='products',
@@ -71,11 +59,6 @@ class Product(BaseModel):
     text = models.TextField(null=True, blank=True, verbose_name="Текст")  # Поле для ввода текста без ограничения
     grade = models.FloatField(default=0, verbose_name="Оценка")  # Поле для ввода числа с плавающей точкой
     price = models.FloatField(default=0, verbose_name="Цена")  # Поле для ввода числа с плавающей точкой
-    macbooks = models.ManyToManyField(  # Поле для связи с другой моделью (автомвтически создает промежуточную таблицу)
-        Macbook,  # Модель, с которой будет связь
-        verbose_name="макбуки",  # Название поля в форме (админка, форма регистрации, форма авторизации)
-        related_name="products"  # Поле для обратной связи (по умолчанию appname_classname_set (post_hashtag_set))
-    )
 
     def __str__(self) -> str:
         return f"{self.title} {self.grade}"
@@ -106,30 +89,30 @@ class Product(BaseModel):
 
 
 # Создание промежуточной таблицы вручную в случае если нужно добавить дополнительные поля в промежуточную таблицу
-# class ProductMacbooks(models.Model):
+# class ProductHastegs(models.Model):
 #     product = models.ForeignKey(
 #         Product,  # Поле для связи с другой моделью
 #         on_delete=models.CASCADE,
 #         # Политика удаления записи в связанной модели (CASCADE - удалить все записи, которые связаны с этой записью)
 #         verbose_name="Продукт",  # Название поля в форме (админка, форма регистрации, форма авторизации)
-#         related_name="macbooks"  # Поле для обратной связи (по умолчанию appname_classname_set (post_posthastegs_set))
+#         related_name="hashtags"  # Поле для обратной связи (по умолчанию appname_classname_set (post_posthastegs_set))
 #     )
-#     macbook = models.ForeignKey(
-#         Macbook,  # Поле для связи с другой моделью
+#     category = models.ForeignKey(
+#         Hashtag,  # Поле для связи с другой моделью
 #         on_delete=models.CASCADE,
 #         # Политика удаления записи в связанной модели (CASCADE - удалить все записи, которые связаны с этой записью)
-#         verbose_name="Макбук",  # Название поля в форме (админка, форма регистрации, форма авторизации)
+#         verbose_name="Хэштег",  # Название поля в форме (админка, форма регистрации, форма авторизации)
 #         related_name="products"  # Поле для обратной связи (по умолчанию appname_classname_set (post_posthastegs_set))
 #     )
 #     date = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")  # Поле для ввода даты и времени
 #
 #     def __str__(self) -> str:
-#         return f"{self.product} {self.macbook}"
+#         return f"{self.product} {self.category}"
 #
 #     class Meta:  # Мета класс - Это класс, который содержит дополнительную информацию о модели
-#         db_table = 'post_macbook'  # Название таблицы в базе данных (по умолчанию appname_classname (post_posthastegs))
-#         verbose_name = 'Макбук поста'  # Название модели в единственном числе
-#         verbose_name_plural = 'Макбуки постов'  # Название модели во множественном числе
+#         db_table = 'product_hashtags'  # Название таблицы в базе данных (по умолчанию appname_classname (post_posthastegs))
+#         verbose_name = 'Хэштег Продукт'  # Название модели в единственном числе
+#         verbose_name_plural = 'Хэштеги Продуктов'  # Название модели во множественном числе
 
 
 class Category(BaseModel):
@@ -149,6 +132,5 @@ class Category(BaseModel):
         verbose_name = 'Категорий'  # Название модели в единственном числе
         verbose_name_plural = 'Категории'  # Название модели во множественном числе
 
-
 # class Like(BaseModel):
-    # pass
+# pass

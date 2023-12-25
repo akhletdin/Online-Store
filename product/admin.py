@@ -10,7 +10,7 @@ from django.contrib import admin  # модуль для работы с адми
 from django.http.request import HttpRequest # модуль для работы с административным сайтом.
 
 
-from product.models import Product, Category, Macbook
+from product.models import Product, Category
 
 
 # admin.site.register(Product)
@@ -36,4 +36,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Category)
 
-admin.site.register(Macbook)
+
