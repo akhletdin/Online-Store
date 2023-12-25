@@ -33,7 +33,7 @@ objects - менеджер модели. Менеджер модели - это 
 '''
 from django.shortcuts import render
 from django.http import HttpResponse
-from post.models import Product, Categories, Macbook
+from product.models import Product, Category, Macbook
 
 
 def main_view(request):
@@ -61,7 +61,7 @@ def product_list_view(request):
 def macbook_list_view(request):
     if request.method == 'GET':
         # 1 - получить все хэштеги из базы данных
-        macbooks = Hashtag.objects.all()
+        macbooks = Macbook.objects.all()
 
         # 2 - передать хэштеги в шаблон
         context = {
