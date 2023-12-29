@@ -9,7 +9,7 @@
 
 <p>{{ product.text }}</p>
 
-<img src="/media/{{ product.image }}">
+<img width="100" src="/media/{{ product.image }}">
 
 <p>{{ product.created_at }}</p>
 
@@ -22,5 +22,19 @@
 {% endfor %}
 
 
-{% endblock %}
+{% for category in product.categories.all %}
+    <p>
+        {{ category.text }}
+    </p>
 
+{% endfor %}
+    <h1>Review Create</h1>
+        <form action="/reviews/create/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <div>
+        <p class="text">{{ review.text }}</p>
+    </div>
+        <button type="submit">Save</button>
+    </form>
+{% endblock %}

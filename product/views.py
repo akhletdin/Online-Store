@@ -31,9 +31,11 @@ objects - менеджер модели. Менеджер модели - это 
 (подробнее в документации https://docs.djangoproject.com/en/3.2/ref/models/querysets/)
 
 '''
-from django.shortcuts import render
+
+from django.shortcuts import redirect, render
 from django.http import HttpResponse
-from product.models import Product, Category
+from product.models import Product, Category, Review
+from product.forms import ProductCreateForm, ProductCreateForm2, CategoryCreateForm, ReviewCreateForm
 
 
 def main_view(request):
@@ -76,19 +78,92 @@ def category_list_view(request):
         )
 
 
-def product_detail_view(request, product_id):
-    if request.method == 'GET':
+def product_detail_view(requests, product_id):
+    if requests.method == 'GET':
         try:
             product = Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            return render(request, '404.html')
+            return render(requests, '404.html')
 
         context = {
             'product': product,
+            'form': ReviewCreateForm
         }
 
         return render(
-            request,  # запрос от пользователя (объект HttpRequest) параметр обязательный
+            requests,  # запрос от пользователя (объект HttpRequest) параметр обязательный
             'product/detail.html',  # имя шаблона (строка) параметр обязательный
             context=context  # словарь с данными (dict) параметр необязательный
         )
+    if requests.method == 'POST':
+        form = ReviewCreateForm(requests.POST, requests.FILES)
+
+        if form.is_valid():
+            # Если это Form, Product.objects.create(**form.cleaned_data)
+            Review.objects.create(**form.cleaned_data)
+
+            # Если это ModelForm, form.save()
+            form.save()
+
+            return redirect('/reviews/')
+
+        else:
+            context = {
+                'form': form,
+            }
+
+        return render(requests, 'product/create.html', context=context)
+
+
+def product_create_view(requests):
+    if requests.method == 'GET':
+        context = {
+            'form': ProductCreateForm2,
+        }
+        return render(requests, 'product/create.html', context=context)
+
+    if requests.method == 'POST':
+        form = ProductCreateForm2(requests.POST, requests.FILES)
+
+        if form.is_valid():
+            # Если это Form, Product.objects.create(**form.cleaned_data)
+            # Product.objects.create(**form.cleaned_data)
+
+            # Если это ModelForm, form.save()
+            form.save()
+
+            return redirect('/products/')
+
+        else:
+            context = {
+                'form': form,
+            }
+
+        return render(requests, 'product/create.html', context=context)
+
+
+def category_create_view(requests):
+    if requests.method == 'GET':
+        context = {
+            'form': CategoryCreateForm,
+        }
+        return render(requests, 'category/create.html', context=context)
+
+    if requests.method == 'POST':
+        form = CategoryCreateForm(requests.POST, requests.FILES)
+
+        if form.is_valid():
+            # Если это Form, Product.objects.create(**form.cleaned_data)
+            Product.objects.create(**form.cleaned_data)
+
+            # Если это ModelForm, form.save()
+            # form.save()
+
+            return redirect('/categories/')
+
+        else:
+            context = {
+                'form': form,
+            }
+
+        return render(requests, 'category/create.html', context=context)
