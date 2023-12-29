@@ -78,12 +78,12 @@ def category_list_view(request):
         )
 
 
-def product_detail_view(requests, product_id):
-    if requests.method == 'GET':
+def product_detail_view(request, product_id):
+    if request.method == 'GET':
         try:
             product = Product.objects.get(id=product_id)
         except Product.DoesNotExist:
-            return render(requests, '404.html')
+            return render(request, '404.html')
 
         context = {
             'product': product,
@@ -91,12 +91,12 @@ def product_detail_view(requests, product_id):
         }
 
         return render(
-            requests,  # запрос от пользователя (объект HttpRequest) параметр обязательный
+            request,  # запрос от пользователя (объект HttpRequest) параметр обязательный
             'product/detail.html',  # имя шаблона (строка) параметр обязательный
             context=context  # словарь с данными (dict) параметр необязательный
         )
-    if requests.method == 'POST':
-        form = ReviewCreateForm(requests.POST, requests.FILES)
+    if request.method == 'POST':
+        form = ReviewCreateForm(request.POST, request.FILES)
 
         if form.is_valid():
             # Если это Form, Product.objects.create(**form.cleaned_data)
@@ -112,7 +112,7 @@ def product_detail_view(requests, product_id):
                 'form': form,
             }
 
-        return render(requests, 'product/create.html', context=context)
+        return render(request, 'product/create.html', context=context)
 
 
 def product_create_view(requests):

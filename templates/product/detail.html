@@ -28,13 +28,19 @@
     </p>
 
 {% endfor %}
-    <h1>Review Create</h1>
+    <br>
+    {% for review in product.reviews.all %}
+        <p>
+        {{ review.text }}
+        </p>
+    {% endfor %}
+    <h1></h1>Write Review</h1>
         <form action="/reviews/create/" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
     <div>
         <p class="text">{{ review.text }}</p>
     </div>
-        <button type="submit">Save</button>
+        <button type="submit">Сохранить</button>
     </form>
 {% endblock %}

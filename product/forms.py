@@ -67,5 +67,5 @@ class ReviewCreateForm(forms.ModelForm):
         model = Review
         fields = 'text',
         labels = {
-            'text': 'напишите что нибудь',
+            'text': 'Напишите отзывы',
         }
