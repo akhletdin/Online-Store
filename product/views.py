@@ -167,3 +167,27 @@ def category_create_view(requests):
             }
 
         return render(requests, 'category/create.html', context=context)
+
+
+def review_create_view(request, post_id):
+    if request.method == 'POST':
+        form = ReviewCreateForm(request.POST)
+
+        try:
+            product = Product.objects.get(id=post_id)
+        except Product.DoesNotExist:
+            return render(request, '404.html')
+
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.post_id = post_id
+            review.save()
+
+            return redirect(f'/products/{post_id}/')
+        else:
+            context = {
+                'product': product,
+                'form': form,
+            }
+
+            return render(request, 'product/detail.html', context=context)

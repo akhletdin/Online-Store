@@ -22,13 +22,7 @@
 {% endfor %}
 
 
-{% for category in product.categories.all %}
-    <p>
-        {{ category.text }}
-    </p>
-
-{% endfor %}
-    <br>
+<br>
     {% for review in product.reviews.all %}
         <p>
         {{ review.text }}

@@ -67,5 +67,24 @@ class ReviewCreateForm(forms.ModelForm):
         model = Review
         fields = 'text',
         labels = {
-            'text': 'Напишите отзывы',
+            'text': 'Текст отзыва',
         }
+        help_texts = {
+            'text': 'Введите текст отзыва',
+        }
+
+    def clean(self):
+        cleaned_data = super().clean()
+
+        text = cleaned_data.get('text')
+
+        if text and len(text) > 200:
+            raise forms.ValidationError('Длина отзыва не должна превышать 200 символов')
+
+        if not text:
+            raise forms.ValidationError('Отзыв не должен быть пустым')
+
+        if len(text) < 3:
+            raise forms.ValidationError('Длина отзыва должна быть больше 3 символов')
+
+        return cleaned_data
