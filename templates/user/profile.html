@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<h1>Profile</h1>
+
+
+<h2>{{ user.username }}</h2>
+
+<h2>{{ user.email }}</h2>
+
+<h2>{{ user.first_name }}</h2>
+
+<h2>{{ user.last_name }}</h2>
+
+<h2>{{ user.date_joined }}</h2>
+
+<h2>{{ user.last_login }}</h2>
+
+
+<button>
+    <a href="/auth/profile/delete/">
+        Delete Profile
+    </a>
+</button>
+{% endblock %}

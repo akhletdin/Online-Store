@@ -99,8 +99,8 @@ class Review(BaseModel):
     product = models.ForeignKey(
         "product.Product",  # Поле для связи с другой моделью
         on_delete=models.CASCADE,  # Поле для связи с другой моделью
-        verbose_name="Продукт",  # Название поля в форме (админка, форма регистрации, форма авторизации)
-        related_name="Reviews"  # Поле для обратной связи (по умолчанию appname_classname_set (post_comments_set))
+        verbose_name="Отзыв",  # Название поля в форме (админка, форма регистрации, форма авторизации)
+        related_name="Отзывы"  # Поле для обратной связи (по умолчанию appname_classname_set (post_comments_set))
     )
     text = models.TextField(null=True, blank=True, verbose_name="Текст")  # Поле для ввода текста без ограничения
 
