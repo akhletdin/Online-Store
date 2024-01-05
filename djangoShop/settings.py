@@ -112,6 +112,8 @@ USE_I18N = True
 # USE_TZ - использование часовых поясов
 USE_TZ = True
 
+OBJECT_PER_PAGE = 3  # Количество объектов на странице
+
 # STATIC_URL - URL-адрес статических файлов (css, js, img)
 STATIC_URL = 'static/'  # Как достать файл в браузере
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # Расположение папки

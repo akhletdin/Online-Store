@@ -16,6 +16,28 @@
 
 {% block content %}
 
+<h1>Product List</h1>
+
+<form action="" method="get">
+    <input type="text" name="search" placeholder="Search">
+    <button type="submit">Search</button>
+</form>
+
+
+<a href="?order=date" method="get">
+    By date ASC
+</a>
+
+<a href="?order=-date" method="get">
+    By date DESC
+</a>
+
+<a href="?order=rate" method="get">
+    By rate ASC
+</a>
+
+
+
 
     {% for product in products %}
 
@@ -38,6 +60,12 @@
         </div>
 
     {% endfor %}
-
+<div>
+    {% for page in max_page %}
+        <a href="?page={{ page }}" method="get">
+            {{ page }}
+        </a>
+    {% endfor %}
+</div>
 
 {% endblock %}
