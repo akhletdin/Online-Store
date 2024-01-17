@@ -10,7 +10,7 @@ urlpatterns = [
     path('categories/create/', views.category_create_view),
     path('products/<int:product_id>/', views.product_detail_view),
     path('products/<int:product_id>/update/', views.product_update_view),
-    path('products/<int:product_id>/reviews/create/', views.review_create_view),
+    path('products/<int:product_id>/review/create/', views.review_create_view),
 
     path('categories/', views.category_list_view),
 ]

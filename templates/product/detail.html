@@ -23,19 +23,13 @@
 
 <a href="update/" class="btn btn-primary">Update</a>
 
-<br>
-    {% for review in product.reviews.all %}
-        <p>
-        {{ review.text }}
-        </p>
-    {% endfor %}
-    <h1></h1>Write Review</h1>
-        <form action="/reviews/create/" method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-    <div>
-        <p class="text">{{ review.text }}</p>
-    </div>
-        <button type="submit">Сохранить</button>
-    </form>
+
+<form action="/review/create/" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">
+        Сохранить
+    </button>
+</form>
+
 {% endblock %}
