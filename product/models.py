@@ -77,6 +77,7 @@ class Product(BaseModel):
     text = models.TextField(null=True, blank=True, verbose_name="Текст")  # Поле для ввода текста без ограничения
     grade = models.FloatField(default=0, verbose_name="Оценка")  # Поле для ввода числа с плавающей точкой
     price = models.FloatField(default=0, verbose_name="Цена")  # Поле для ввода числа с плавающей точкой
+
     # categories = models.ManyToManyField(  # Поле для связи с другой моделью (автомвтически создает промежуточную таблицу)
     #     Category,  # Модель, с которой будет связь
     #     verbose_name="Категории",  # Название поля в форме (админка, форма регистрации, форма авторизации)
@@ -106,8 +107,6 @@ class Review(BaseModel):
 
     def __str__(self) -> str:
         return f"{self.text}"
-
-
 
 # class ProductInfo(models.Model):
 #     product = models.OneToOneField(  # Поле для связи с другой моделью
